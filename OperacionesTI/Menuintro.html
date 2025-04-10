@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revista Digital</title>
+  <link rel="stylesheet" href="diseñomenu.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="#introduccion">Introducción</a>
+    <a href="#implementaciones">Implementaciones y Pruebas</a>
+    <a href="#conclusiones">Conclusiones</a>
+    <a href="#portafolio">Portafolio</a>
+  </nav>
+
+  <div class="container">
+    <!-- Sección de Introducción con textos completos -->
+    <section id="introduccion" class="section">
+      <div class="article-content">
+        <h2>Introducción</h2>
+        <p>
+          En el contexto actual del desarrollo de software, donde la escalabilidad, la resiliencia y el rendimiento son aspectos críticos para el éxito de una aplicación, contar con un sistema de monitoreo robusto se ha vuelto indispensable. Este proyecto se centra en la implementación de un entorno de monitoreo integral para una aplicación construida con Spring Boot, un framework ampliamente utilizado en el ecosistema Java para el desarrollo de microservicios y aplicaciones empresariales, aprovechándose de las capacidades del módulo Spring Boot Actuator, el cual expone endpoints HTTP con información detallada sobre la salud, métricas y configuración de la aplicación. Esta integración facilitó la conexión entre la aplicación y las herramientas de monitoreo, garantizando un flujo de datos eficiente y preciso.
+        </p>
+        <h3>Objetivos</h3>
+        <p>
+          Implementar un sistema de monitoreo en tiempo real para una aplicación Spring Boot utilizando Prometheus como herramienta de recolección y almacenamiento de métricas, y Grafana para la visualización de datos.<br>
+          Desarrollar dashboards interactivos en Grafana que permitan visualizar de manera clara y consolidada el estado de la aplicación, facilitando la identificación de patrones, tendencias y comportamientos anómalos.<br>
+          Configurar alertas automáticas mediante Prometheus o Grafana para notificar de manera proactiva sobre eventos críticos, como caídas en el rendimiento, errores recurrentes o consumo excesivo de recursos.
+        </p>
+        <h3>Diseño de la Solución</h3>
+        <p>
+          <strong>Aplicación Spring Boot</strong><br>
+          – Expone endpoints HTTP con métricas de la aplicación.<br>
+          – Se configura para exponer métricas en formato Prometheus.<br><br>
+          <strong>Prometheus</strong><br>
+          – Recolecta métricas desde el endpoint <code>/actuator/prometheus</code> de la aplicación Spring Boot.<br>
+          – Configuración mediante un archivo <code>prometheus.yml</code> donde se definen el intervalo de recolección de datos y el puerto de acceso.<br><br>
+          <strong>Grafana</strong><br>
+          – Conecta con Prometheus como fuente de datos.<br>
+          – Crea dashboards personalizados con paneles para las métricas de JVM y uso de recursos del sistema.<br>
+          – Configura un sistema de alertas para enviar notificaciones por correo mediante Gmail.
+        </p>
+        <h3>Implementación</h3>
+        <p>
+          1. Se agregan las dependencias en Spring Boot para recolectar las métricas (Actuator y Micrometer).<br>
+          2. Se configuran los endpoints del Actuator en el archivo <code>application.properties</code>.<br>
+          3. Se crea un archivo <code>prometheus.yml</code> que define el job de monitoreo, la ruta del endpoint y el puerto.<br>
+          4. Se elabora el archivo <code>docker-compose.yml</code> para descargar las imágenes de Grafana y Prometheus, configurando puertos, credenciales de acceso en Grafana y parámetros para alertas (correo remitente y receptor).<br>
+          5. Con el comando <code>docker compose up</code> se inicia el entorno: Prometheus se verifica en el puerto 9090 para asegurar que las métricas se recolectan correctamente.<br>
+          6. Se accede a Grafana en el puerto 3000 para establecer la conexión con Prometheus y extraer la información.<br>
+          7. Finalmente, se crea un dashboard en Grafana para la visualización continua de las métricas.
+        </p>
+        <h3>Pruebas y Resultados</h3>
+        <p>
+          Durante una ejecución con baja actividad, se observó que la aplicación presenta valores bajos en el uso de memoria, lo que indica un consumo moderado. Adicionalmente, se comprobó que el Garbage Collector de la JVM opera de forma cíclica y eficiente, gestionando adecuadamente los objetos.<br>
+          Para evaluar el rendimiento bajo estrés, se desarrolló un método que crea hilos de manera continua. Esto activó la alerta configurada, notificando por correo un elevado uso de CPU. En el dashboard se verificaron los niveles altos de CPU, lo que confirma la respuesta del sistema ante el incremento de la carga y el adecuado manejo de la JVM por parte del Garbage Collector.
+        </p>
+      </div>
+    </section>
+
+    <!-- Sección de Implementaciones y Pruebas con cards de texto resumido -->
+    <section id="implementaciones" class="section">
+      <div class="magazine-layout">
+        <div class="article-card">
+          <img src="https://picsum.photos/400/300?random=3" alt="Implementación">
+          <div class="article-content">
+            <h3>Implementación</h3>
+            <p>
+              Configuración de Spring Boot (Actuator y Micrometer), Prometheus (<code>prometheus.yml</code>) y docker-compose para integrar Grafana y Prometheus sin sobrecargar la vista.
+            </p>
+          </div>
+        </div>
+        <div class="article-card">
+          <img src="https://picsum.photos/400/300?random=4" alt="Configuración y conexión">
+          <div class="article-content">
+            <h3>Conexión y Dashboards</h3>
+            <p>
+              Se establece la conexión entre Grafana y Prometheus y se crean dashboards interactivos para visualizar métricas del sistema y de la JVM.
+            </p>
+          </div>
+        </div>
+        <div class="article-card">
+          <img src="https://picsum.photos/400/300?random=5" alt="Pruebas y alertas">
+          <div class="article-content">
+            <h3>Pruebas y Alertas</h3>
+            <p>
+              Pruebas en entorno de baja actividad y estrés. Se activan alertas de uso elevado de CPU y se verifica el rendimiento de la garbage collection.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Conclusiones (puedes actualizarla con tus propias conclusiones) -->
+    <section id="conclusiones" class="section">
+      <div class="text-section">
+        <img src="https://picsum.photos/400/300?random=6" alt="Imagen 3">
+        <div class="article-content">
+          <h2>Conclusiones</h2>
+          <p>
+            La implementación del sistema de monitoreo utilizando Spring Boot, Prometheus y Grafana ha permitido obtener una visión detallada del rendimiento y uso de recursos de la aplicación. Las pruebas realizadas demuestran que, aun bajo estrés, el mecanismo de garbage collection opera eficazmente, evitando saturaciones y permitiendo que las alertas se activen de manera oportuna para la toma de decisiones proactivas.
+          </p>
+        </div>
+        <img src="https://picsum.photos/400/300?random=7" alt="Imagen 4">
+      </div>
+    </section>
+
+    <!-- Sección de Portafolio sin cambios -->
+    <section id="portafolio" class="section">
+      <h2 style="text-align: center; color: var(--secondary); margin-bottom: 2rem;">Portafolio</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://picsum.photos/400/300?random=8" alt="Proyecto 1">
+          <div class="portfolio-overlay">Proyecto Destacado 1</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://picsum.photos/400/300?random=9" alt="Proyecto 2">
+          <div class="portfolio-overlay">Innovación Tecnológica</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://picsum.photos/400/300?random=10" alt="Proyecto 3">
+          <div class="portfolio-overlay">Desarrollo Web</div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://picsum.photos/400/300?random=11" alt="Proyecto 4">
+          <div class="portfolio-overlay">Aplicación Móvil</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="menu.js"></script>
+</body>
+</html>
