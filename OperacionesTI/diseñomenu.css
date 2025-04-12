@@ -185,3 +185,115 @@ body {
         white-space: nowrap;
     }
 }
+/* Estilo para mover el logo hacia la izquierda */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Espaciado entre logo y enlaces */
+    background: var(--primary);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    height: 80px; /* Tamaño del logo */
+    width: auto;
+}
+
+.navbar-links {
+    display: flex;
+    justify-content: center; /* Centra los enlaces */
+    flex-grow: 1; /* Hace que los enlaces ocupen el espacio disponible */
+}
+
+.navbar-links a {
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+:root {
+    --primary: #2c3e50;
+    --secondary: #3498db;
+    --accent: #e74c3c;
+    --light: #ecf0f1;
+    --dark: #212f3d;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Georgia', serif;
+    line-height: 1.7;
+    background: var(--light);
+    color: var(--dark);
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .navbar-logo {
+    height: 80px;
+    width: auto;
+  }
+
+  .navbar-links {
+    display: flex;
+  }
+
+  .navbar-links a {
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+
+  .navbar-links a:hover {
+    color: var(--accent);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .section {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  p {
+    opacity: 0; /* Comienza invisible */
+    animation: slideInUp 1s ease-in-out forwards; /* Aplica animación */
+  }
+
+  @keyframes slideInUp {
+    from {
+      transform: translateY(20px); /* Empieza desde abajo */
+      opacity: 0; /* Es invisible inicialmente */
+    }
+    to {
+      transform: translateY(0); /* Termina en su posición original */
+      opacity: 1; /* Se vuelve visible */
+    }
+  }
